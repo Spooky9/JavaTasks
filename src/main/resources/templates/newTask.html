@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>New Task</title>
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+	<div th:insert="fragments/nav"></div>
+	<body>
+		<h1 class="text-center text-white text-uppercase pb-3">Create a new task</h1>
+		<div class="container jumbotron">
+			<form action="#" th:action="@{/task/new}" th:object="${javaTask}" method="post">
+				<div class="form-group">
+					<label for="taskInput">Task:</label>
+					<input id="taskInput" class="form-control" type="text" th:field="*{task}" required>
+				</div>
+				
+				<div class="form-group">
+					<label for="authorInput">Author:</label>
+					<input id="authorInput" class="form-control" type="text" th:field="*{author}" required>
+				</div>
+				
+				<div class="form-group">
+					<label for="difficultyInput">Difficulty:</label>
+					<select class="form-control" id="dofficultyInput" th:field="*{difficulty}" required>
+						<option value="" disabled>Difficulty</option>
+						<option th:value="'Easy'" th:text="Easy" selected="selected">
+						<option th:value="'Medium'" th:text="Medium">
+						<option th:value="'Hard'" th:text="Hard">
+					</select>
+				</div>
+				
+				<input class="btn btn-primary" type="submit" value="Submit">
+			</form>
+			<br>
+			<a class="text-center mt-5" th:text="${message}" th:href="@{/task/} + ${javaTask.id}"></a>
+		</div>
+		
+	</body>
+</html>

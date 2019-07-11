@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Java Task</title>
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+	<div th:insert="fragments/nav"></div>
+	<body>
+	<h1 class="text-center text-white text-uppercase">Task #<span th:text="*{id}"></span></h1>
+	<div class="container jumbotron">
+		<div class="col-6">
+			<span class="pr-3">Task:</span><span th:text="${taskItem.task}"></span>
+			<br>
+			<span class="pr-3">Author:</span><span th:text="${taskItem.author}"></span>
+			<br>
+			<span class="pr-3">Difficulty:</span><span th:text="${taskItem.difficulty}"></span>
+			<br>
+		</div>
+		<div class="col-6">
+		    <form class="pt-4" th:object="${taskItem}" th:action="@{/task/} + ${id}"
+							th:method="delete">
+								<input class="btn btn-danger" type="submit" value="Delete Task">
+			</form>
+		    <a class="btn btn-secondary mt-4" th:href="@{/task/} + ${taskItem.id} + '/update'">Edit
+						Task</a>
+		</div>
+    </div>
+	</body>
+</html>
